@@ -1,8 +1,8 @@
-import './App.css'
+import './App.scss'
 
 function App() {
   return (
-    <div>Ciao mondo.</div>
+    <div className='rosso'>Ciao mondo.</div>
   )
 }
 
