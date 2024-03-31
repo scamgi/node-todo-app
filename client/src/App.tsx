@@ -1,8 +1,12 @@
+import { useEffect, useState } from "react";
 import "./App.scss";
-import { tasks } from './db/tasks';
 
 function App() {
-  const t = tasks;
+  const [tasks, setTasks] = useState([{}]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/tasks', { method: 'GET' }).then(res => res.json()).then(data => setTasks(data));
+  }, []);
 
   return (
     <main>
@@ -14,7 +18,7 @@ function App() {
         <div className="todo">
           <h1 className="todo__title">Tasks to do - 4</h1>
           <div className="todo__list">
-            {t.filter(task => task.completed === false).map(task => {
+            {tasks.filter(task => task.completed === false).map(task => {
               return <div className="todo__list__element" key={task.id}>
                 <span className="todo__list__element__text">{task.name}</span>
                 <span className="todo__list__element__done">v</span>
@@ -26,8 +30,8 @@ function App() {
         <div className="done">
           <h1 className="done__title">Done - 1</h1>
           <div className="done__list">
-            {t.filter(task => task.completed === true).map(task => {
-              return <div className="done__list__element">
+            {tasks.filter(task => task.completed === true).map(task => {
+              return <div className="done__list__element" key={task.id}>
                 <span className="done__list__element__text">{task.name}</span>
               </div>
             })}
