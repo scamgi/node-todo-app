@@ -1,6 +1,5 @@
 const http = require("http");
-const { tasks } = require('./db/tasks.ts');
-const cors = require('cors');
+const { getTasks } = require('./controllers/taskController');
 
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -8,9 +7,7 @@ const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === 'GET' && req.url === '/api/tasks') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify(tasks));
-    res.end();
+    getTasks(req, res);
   }
   else {
     res.writeHead(404, { 'Content-Type': 'application/json' });
