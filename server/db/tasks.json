@@ -1,12 +1,1 @@
-[
-  { "id": 0, "name": "To study React fundamentals", "completed": false },
-  { "id": 1, "name": "To study Node fundamentals", "completed": false },
-  { "id": 2, "name": "To study Laravel fundamentals", "completed": false },
-  { "id": 3, "name": "To study Pippo fundamentals", "completed": false },
-  { "id": 4, "name": "To study TypeScript fundamentals", "completed": true },
-  {
-    "id": "7a5c9748-c02a-403f-8ac9-bc138a51ec97",
-    "name": "Random",
-    "completed": false
-  }
-]
+[{"id":0,"name":"To study React fundamentals","completed":false},{"id":1,"name":"To study Node fundamentals","completed":false},{"id":2,"name":"To study Laravel fundamentals","completed":false},{"id":3,"name":"To study Pippo fundamentals","completed":false},{"id":4,"name":"To study TypeScript fundamentals","completed":true},{"id":"7a5c9748-c02a-403f-8ac9-bc138a51ec97","name":"Random","completed":false},{"id":"ab92c662-86dd-4cb0-a634-71629d4a94ec","name":"Hey","completed":false},{"id":"3ab27578-f18e-461a-8d89-b2ca09629b6e","name":"ciao","completed":false},{"id":"ef6be772-7b03-41c2-88fd-cea935dcae8b","name":"heyla","completed":false},{"id":"d9145a86-6737-4b0d-b414-ce622d44254a","name":"ancora uno","completed":false}]
