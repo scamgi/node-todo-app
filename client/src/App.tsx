@@ -26,7 +26,7 @@ function App() {
     }
   }
 
-  // TODO fix cors policy
+  // TODO fix CORS policy
   async function markAsCompleted(id) {
     // try {
     //   console.log('http://localhost:5000/api/tasks/' + id);
@@ -49,7 +49,7 @@ function App() {
     // }
   }
 
-  // TODO fix cors policy
+  // TODO fix CORS policy
   async function remove(id) {
     try {
       const response = await fetch('http://localhost:5000/api/tasks/' + id, {
