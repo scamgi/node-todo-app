@@ -31,13 +31,15 @@ async function findById(id) {
   }
 }
 
-function create(task) {
-  return new Promise((resolve, reject) => {
-    const newTask = { id: uuidv4(), ...task };
-    tasks.push(newTask);
-    writeDataToFile(filenameDB, tasks);
-    resolve(newTask);
-  });
+async function create(task) {
+  try {
+    const result = await db.query(
+      `INSERT INTO Tasks (name, completed) VALUES ("${task.name}", ${task.completed})`
+    );
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function update(id, task) {
