@@ -12,6 +12,17 @@ async function getTasks(req, res) {
   }
 }
 
+async function findTaskById(req, res, id) {
+  try {
+    const tasks = await Task.findById(id);
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(JSON.stringify(tasks));
+    res.end();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function createTasks(req, res) {
   try {
     const body = await getPostData(req);
@@ -74,4 +85,5 @@ module.exports = {
   createTasks,
   updateTask,
   deleteTask,
+  findTaskById,
 };

@@ -20,11 +20,15 @@ function findAll() {
   }
 }
 
-function findById(id) {
-  return new Promise((resolve, reject) => {
-    const task = tasks.find((p) => p.id === id);
-    resolve(task);
-  });
+async function findById(id) {
+  try {
+    const result = await db.query(
+      `SELECT id, name, completed FROM Tasks WHERE id = ${id}`
+    );
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function create(task) {
