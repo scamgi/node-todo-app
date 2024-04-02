@@ -53,12 +53,13 @@ async function update(id, task) {
   }
 }
 
-function remove(id) {
-  return new Promise((resolve, reject) => {
-    tasks = tasks.filter((p) => p.id !== id);
-    writeDataToFile(filenameDB, tasks);
-    resolve();
-  });
+async function remove(id) {
+  try {
+    const result = await db.query(`DELETE FROM Tasks WHERE id = ${id}`);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 module.exports = {
