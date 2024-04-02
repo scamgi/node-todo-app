@@ -46,6 +46,8 @@ async function updateTask(req, res, id) {
       res.end();
     } else {
       const body = await getPostData(req);
+      // TODO when I don't specify name, name || task.name returns undefined.
+      // I need to check it out.
       const { name, completed } = JSON.parse(body);
       const taskData = {
         name: name || task.name,

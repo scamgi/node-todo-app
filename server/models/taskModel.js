@@ -42,13 +42,15 @@ async function create(task) {
   }
 }
 
-function update(id, task) {
-  return new Promise((resolve, reject) => {
-    const index = tasks.findIndex((p) => p.id === id);
-    tasks[index] = { id, ...task };
-    writeDataToFile(filenameDB, tasks);
-    resolve(tasks[index]);
-  });
+async function update(id, task) {
+  try {
+    const result = await db.query(
+      `UPDATE Tasks SET name = "${task.name}", completed = ${task.completed} WHERE id = ${id}`
+    );
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function remove(id) {
