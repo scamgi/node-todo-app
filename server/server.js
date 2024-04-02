@@ -1,5 +1,5 @@
 const http = require("http");
-const { getTasks, createTasks } = require('./controllers/taskController');
+const { getTasks, createTasks, updateTask } = require('./controllers/taskController');
 
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,6 +11,14 @@ const server = http.createServer((req, res) => {
   }
   else if (req.method === 'POST' && req.url === '/api/tasks') {
     createTasks(req, res);
+  }
+  else if (req.method === 'PUT' && req.url.match(/\/api\/tasks\/([0-9]+)/)) {
+    /**
+     * /api/tasks/...
+     * ['', 'api', 'tasks', '...']
+     */
+    const id = req.url.split('/')[3];
+    updateTask(req, res, id);
   }
   else {
     res.writeHead(404, { 'Content-Type': 'application/json' });
