@@ -3,5 +3,10 @@
   { "id": 1, "name": "To study Node fundamentals", "completed": false },
   { "id": 2, "name": "To study Laravel fundamentals", "completed": false },
   { "id": 3, "name": "To study Pippo fundamentals", "completed": false },
-  { "id": 4, "name": "To study TypeScript fundamentals", "completed": true }
+  { "id": 4, "name": "To study TypeScript fundamentals", "completed": true },
+  {
+    "id": "10d2857a-2030-42be-9c21-30a28dfa8a63",
+    "name": "ciao",
+    "completed": false
+  }
 ]

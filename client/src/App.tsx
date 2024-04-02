@@ -26,8 +26,42 @@ function App() {
     }
   }
 
-  // TODO add 'MarkAsCompleted' functionality
-  // TODO add 'Delete' functionality
+  // TODO fix cors policy
+  async function markAsCompleted(id) {
+    // try {
+    //   console.log('http://localhost:5000/api/tasks/' + id);
+    //   const response = await fetch('http://localhost:5000/api/tasks/' + id, {
+    //     method: 'PUT',
+    //     body: JSON.stringify({ completed: true })
+    //   });
+    //   const responseJson = await response.json();
+    //   console.log(responseJson);
+    //   if (responseJson && responseJson.id) {
+    //     const index = tasks.findIndex(p => p.id === id);
+    //     tasks[index].completed = true;
+    //     setTasks(tasks);
+    //   }
+    //   else {
+    //     console.error(responseJson);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  }
+
+  // TODO fix cors policy
+  async function remove(id) {
+    try {
+      const response = await fetch('http://localhost:5000/api/tasks/' + id, {
+        method: 'DELETE'
+      });
+      const responseJson = await response.json();
+      console.log(responseJson);
+      setTasks(tasks.filter(p => p.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <main>
@@ -42,8 +76,8 @@ function App() {
             {tasks.filter(task => task.completed === false).map(task => {
               return <div className="todo__list__element" key={task.id}>
                 <span className="todo__list__element__text">{task.name}</span>
-                <span className="todo__list__element__done">v</span>
-                <span className="todo__list__element__delete">x</span>
+                <button className="todo__list__element__done" onClick={() => markAsCompleted(task.id)}>v</button>
+                <button className="todo__list__element__delete" onClick={() => remove(task.id)}>x</button>
               </div>
             })}
           </div>

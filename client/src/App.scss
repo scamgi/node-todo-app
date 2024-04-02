@@ -79,6 +79,10 @@ main {
   color: $todo__text;
 }
 
+.todo__list__element__done, .todo__list__element__delete {
+  cursor: pointer;
+}
+
 .done {
   margin-top: 60px;
 }
