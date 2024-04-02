@@ -1,4 +1,4 @@
-const tasks = require("../db/tasks.json");
+let tasks = require("../db/tasks.json");
 const { v4: uuidv4 } = require("uuid");
 const { writeDataToFile } = require("../utils");
 
@@ -39,9 +39,18 @@ function update(id, task) {
   });
 }
 
+function remove(id) {
+  return new Promise((resolve, reject) => {
+    tasks = tasks.filter(p => p.id !== id);
+    writeDataToFile(filenameDB, tasks);
+    resolve();
+  })
+}
+
 module.exports = {
   findAll,
   create,
   update,
-  findById
+  findById,
+  remove
 };

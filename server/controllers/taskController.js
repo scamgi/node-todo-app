@@ -38,7 +38,7 @@ async function updateTask(req, res, id) {
       const { name, completed } = JSON.parse(body);
       const taskData = {
         name: name || task.name,
-        completed: completed || task.completed
+        completed: completed || task.completed,
       };
 
       const updatedTask = await Task.update(id, taskData);
@@ -51,8 +51,27 @@ async function updateTask(req, res, id) {
   }
 }
 
+async function deleteTask(req, res, id) {
+  try {
+    const task = await Task.findById(id);
+    if (!task) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.write(JSON.stringify({ message: "Task Not Found" }));
+      res.end();
+    } else {
+      await Task.remove(id);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.write(JSON.stringify({ message: `Task ${id} removed.` }));
+      res.end();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 module.exports = {
   getTasks,
   createTasks,
-  updateTask
+  updateTask,
+  deleteTask,
 };
