@@ -1,8 +1,9 @@
 let tasks = require("../db/tasks.json");
 const { v4: uuidv4 } = require("uuid");
 const { writeDataToFile } = require("../utils");
+const db = require("../db/db");
 
-const filenameDB = './db/tasks.json';
+const filenameDB = "./db/tasks.json";
 
 // TODO create MySql connection
 
@@ -11,9 +12,12 @@ const filenameDB = './db/tasks.json';
  * @returns Promise
  */
 function findAll() {
-  return new Promise((resolve, reject) => {
-    resolve(tasks);
-  });
+  try {
+    const result = db.query(`SELECT id, name, completed FROM Tasks`);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function findById(id) {
@@ -34,7 +38,7 @@ function create(task) {
 
 function update(id, task) {
   return new Promise((resolve, reject) => {
-    const index = tasks.findIndex(p => p.id === id);
+    const index = tasks.findIndex((p) => p.id === id);
     tasks[index] = { id, ...task };
     writeDataToFile(filenameDB, tasks);
     resolve(tasks[index]);
@@ -43,10 +47,10 @@ function update(id, task) {
 
 function remove(id) {
   return new Promise((resolve, reject) => {
-    tasks = tasks.filter(p => p.id !== id);
+    tasks = tasks.filter((p) => p.id !== id);
     writeDataToFile(filenameDB, tasks);
     resolve();
-  })
+  });
 }
 
 module.exports = {
@@ -54,5 +58,5 @@ module.exports = {
   create,
   update,
   findById,
-  remove
+  remove,
 };
