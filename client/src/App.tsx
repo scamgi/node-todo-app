@@ -26,6 +26,9 @@ function App() {
     }
   }
 
+  // TODO add 'MarkAsCompleted' functionality
+  // TODO add 'Delete' functionality
+
   return (
     <main>
       <div className="container">

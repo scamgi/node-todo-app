@@ -4,6 +4,8 @@ const { writeDataToFile } = require("../utils");
 
 const filenameDB = './db/tasks.json';
 
+// TODO create MySql connection
+
 /**
  * Returns all the tasks available in the DB.
  * @returns Promise
